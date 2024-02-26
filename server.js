@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 
 const users = require("./routes/users");
 const climbs = require("./routes/climbs");
+// const rating = require("./routes/rating");
 
 const error = require("./utilities/error");
 
@@ -13,24 +14,15 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
-// Use our Routes
+// Routes
 app.use("/api/users", users);
 app.use("/api/climbs", climbs);
+// app.use("/api/rating", rating);
 
-// Adding some HATEOAS links.
 app.get("/", (req, res) => {
-  res.json({
-    links: [
-      {
-        href: "/api",
-        rel: "api",
-        type: "GET",
-      },
-    ],
-  });
+  res.json({ links: [{ href: "/api", rel: "api", type: "GET" }] });
 });
 
-// Adding HATEOAS links.
 app.get("/api", (req, res) => {
   res.json({
     links: [
@@ -54,16 +46,26 @@ app.get("/api", (req, res) => {
         rel: "climbs",
         type: "POST",
       },
+      {
+        href: "api/rating",
+        rel: "rating",
+        type: "GET",
+      },
+      {
+        href: "api/rating",
+        rel: "rating",
+        type: "POST",
+      },
     ],
   });
 });
 
-// 404 Middleware
+// 404 middleware
 app.use((req, res, next) => {
   next(error(404, "Resource Not Found"));
 });
 
-// Error-handling middleware.
+// error-handling middleware
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
@@ -73,3 +75,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}.`);
 });
+console.log(`C'mon!TEXAS!CLIMBS!`);

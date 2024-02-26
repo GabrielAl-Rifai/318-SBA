@@ -15,7 +15,7 @@ router
       },
     ];
 
-    res.json({ posts, links });
+    res.json({ climbs, links });
   })
   .post((req, res, next) => {
     if (req.body.userId && req.body.title && req.body.content) {

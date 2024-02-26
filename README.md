@@ -1,11 +1,13 @@
 # Texas Rock Climbing API
 
-This API allows users to manage rock climbing information in Texas, including adding, updating, and deleting climbs, as well as rating those climbs.
+This API allows users to manage rock climbing information in Texas, including adding, updating, and deleting climbs, as well as rating their difficulty.
+
+![alt text](<App Images/TX Rock Climbs App.png>)
 
 ## Installation
 
 1. Clone this repository:
-   git clone https://github.com/yourusername/your-repository.git
+   git clone https://github.com/GabrielAl-Rifai/318-SBA.git
 
 2. Navigate to the project directory:
    cd your-repository
@@ -58,27 +60,4 @@ Error Handling: Error handling middleware is implemented in the server.js file.
 
 ```bash
 
-
-
-
-
-
-
-
-
-
-
-Create and use at least two pieces of custom middleware.
-
-Create and use error-handling middleware.
-
-Use at least three different data categories (e.g., users, posts, or comments).
-
-Include query parameters for data filtering, where appropriate.
-
-Create and render at least one view using a view template and template engine. This can be a custom template engine or a third-party engine.
-
-Use simple CSS to style the rendered views.
-
-Include a form within a rendered view that allows for interaction with your RESTful API.
 ```

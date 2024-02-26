@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Climbs</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <!-- <style>
-        /* Simple CSS styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .climb {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        form {
-            margin-top: 20px;
-        }
-        form input[type="text"],
-        form input[type="submit"] {
-            padding: 5px 10px;
-            margin-right: 10px;
-        }
-    </style> -->
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texas Rock Climbs</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .climb {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      form {
+        margin-top: 20px;
+      }
+      form input[type="text"],
+      form input[type="submit"] {
+        padding: 5px 10px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
     <h1>TEXAS Rock Climbs</h1>
     <!-- Display climbs -->
-    <% if (climbs.length > 0) { %>
-        <% climbs.forEach(climb => { %>
-            <div class="climb">
-                <h3><%= climb.name %></h3>
-                <p><strong>Location:</strong> <%= climb.location %></p>
-                <p><strong>Difficulty:</strong> <%= climb.difficulty %></p>
-                <p><strong>Description:</strong> <%= climb.description %></p>
-            </div>
-        <% }); %>
-    <% } else { %>
-        <p>No climbs available.</p>
-    <% } %>
-
-
-</body>
+    <% if (climbs.length > 0) { %> <% climbs.forEach(climb => { %>
+    <div class="climb">
+      <h3><%= climb.name %></h3>
+      <p><strong>Location:</strong> <%= climb.location %></p>
+      <p><strong>Difficulty:</strong> <%= climb.difficulty %></p>
+      <p><strong>Description:</strong> <%= climb.description %></p>
+    </div>
+    <% }); %> <% } else { %>
+    <p>No climbs available.</p>
+    <% } %> new climb form
+    <h2>Add a New Climb</h2>
+    <form action="/api/climbs" method="POST">
+      <input type="text" name="name" placeholder="Climb Name" required />
+      <input type="text" name="location" placeholder="Location" required />
+      <input type="text" name="difficulty" placeholder="Difficulty" required />
+      <input
+        type="text"
+        name="description"
+        placeholder="Description"
+        required
+      />
+      <input type="submit" value="Add Climb" />
+    </form>
+  </body>
 </html>

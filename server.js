@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
+const ejs = require("ejs");
 
 const users = require("./routes/users");
 const climbs = require("./routes/climbs");
@@ -13,6 +15,12 @@ const port = 3000;
 // Parsing Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
+
+// Set EJS as the view engine
+app.set("view engine", "ejs");
+
+// Set up the views directory
+app.set("views", path.join(__dirname, "views"));
 
 // Routes
 app.use("/api/users", users);
@@ -49,6 +57,12 @@ app.get("/api/climbs", (req, res, next) => {
   res.json({ climbs: filteredClimbs });
 });
 
+// Render climbs view
+app.get("/climbs", (req, res) => {
+  // Render the climbs view here with real data, considering query parameters if needed
+  res.render("climbs"); // Assuming you have a "climbs.ejs" file in your views folder
+});
+
 // Default route
 app.get("/", (req, res) => {
   res.json({ links: [{ href: "/api", rel: "api", type: "GET" }] });
@@ -62,7 +76,7 @@ app.get("/api", (req, res) => {
         href: "api/users",
         rel: "users",
         type: "GET",
-        description: "Get all users with optional filtering",
+        description: "Get all users with optional filtering by name",
       },
       {
         href: "api/users",
@@ -74,7 +88,7 @@ app.get("/api", (req, res) => {
         href: "api/climbs",
         rel: "climbs",
         type: "GET",
-        description: "Get all climbs with optional filtering",
+        description: "Get all climbs with optional filtering by location",
       },
       {
         href: "api/climbs",

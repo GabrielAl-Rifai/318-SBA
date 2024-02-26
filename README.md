@@ -27,32 +27,34 @@ GET /api/rating: Retrieve ratings of climbs.
 POST /api/rating: Add or update a rating for a climb.
 
 ## Example
+
 curl -X GET http://localhost:3000/api/climbs
 
 ## Response
+
 {
-  "climbs": [
-    {
-      "id": 1,
-      "name": "Climb Name",
-      "location": "Location Name",
-      "difficulty": "5.10",
-      "description": "Description of the climb"
-    },
-    {
-      "id": 2,
-      "name": "Another Climb",
-      "location": "Another Location",
-      "difficulty": "5.8",
-      "description": "Description of another climb"
-    }
-  ]
+"climbs": [
+{
+"id": 1,
+"name": "Climb Name",
+"location": "Location Name",
+"difficulty": "5.10",
+"description": "Description of the climb"
+},
+{
+"id": 2,
+"name": "Another Climb",
+"location": "Another Location",
+"difficulty": "5.8",
+"description": "Description of another climb"
+}
+]
 }
 
 ## Middleware and Error Handling
+
 Body Parser: Middleware for parsing incoming request bodies.
 Error Handling: Error handling middleware is implemented in the server.js file.
-
 
 ```bash
 

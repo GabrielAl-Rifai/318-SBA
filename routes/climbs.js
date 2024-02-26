@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
+// Importing climb data and error utility
 const climbs = require("../data/climbs");
 const error = require("../utilities/error");
 
+// Route for handling GET and POST requests for /climbs
 router
   .route("/")
   .get((req, res) => {
+    // Endpoint to retrieve all climbs
     const links = [
       {
         href: "climbs/:id",
@@ -18,23 +21,31 @@ router
     res.json({ climbs, links });
   })
   .post((req, res, next) => {
+    // Endpoint to add a new climb
     if (req.body.userId && req.body.title && req.body.content) {
-      const post = {
+      // Creating a new climb object
+      const newClimb = {
         id: climbs[climbs.length - 1].id + 1,
         userId: req.body.userId,
         title: req.body.title,
         content: req.body.content,
       };
 
-      climbs.push(post);
+      // Adding the new climb to the climbs array
+      climbs.push(newClimb);
       res.json(climbs[climbs.length - 1]);
-    } else next(error(400, "Insufficient Data"));
+    } else {
+      // If insufficient data is provided, return an error
+      next(error(400, "Insufficient Data"));
+    }
   });
 
+// Route for handling GET, PATCH, and DELETE requests for a specific climb by ID
 router
   .route("/:id")
   .get((req, res, next) => {
-    const post = climbs.find((p) => p.id == req.params.id);
+    // Endpoint to retrieve a specific climb by ID
+    const climb = climbs.find((c) => c.id == req.params.id);
 
     const links = [
       {
@@ -49,32 +60,37 @@ router
       },
     ];
 
-    if (post) res.json({ post, links });
-    else next();
+    if (climb) {
+      res.json({ climb, links });
+    } else {
+      next();
+    }
   })
   .patch((req, res, next) => {
-    const post = climbs.find((p, i) => {
-      if (p.id == req.params.id) {
-        for (const key in req.body) {
-          climbs[i][key] = req.body[key];
-        }
-        return true;
-      }
-    });
+    // Endpoint to update a specific climb by ID
+    const climbIndex = climbs.findIndex((c) => c.id == req.params.id);
 
-    if (post) res.json(post);
-    else next();
+    if (climbIndex !== -1) {
+      // If climb found, update its properties with new data
+      for (const key in req.body) {
+        climbs[climbIndex][key] = req.body[key];
+      }
+      res.json(climbs[climbIndex]);
+    } else {
+      next();
+    }
   })
   .delete((req, res, next) => {
-    const post = climbs.find((p, i) => {
-      if (p.id == req.params.id) {
-        climbs.splice(i, 1);
-        return true;
-      }
-    });
+    // Endpoint to delete a specific climb by ID
+    const climbIndex = climbs.findIndex((c) => c.id == req.params.id);
 
-    if (post) res.json(post);
-    else next();
+    if (climbIndex !== -1) {
+      // If climb found, delete it from the climbs array
+      const deletedClimb = climbs.splice(climbIndex, 1);
+      res.json(deletedClimb[0]);
+    } else {
+      next();
+    }
   });
 
 module.exports = router;

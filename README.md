@@ -1,8 +1,8 @@
-# Texas Rock Climbing API
+# Texas Rock Climbs API
 
 This API allows users to manage rock climbing information in Texas, including adding, updating, and deleting climbs, as well as rating their difficulty.
 
-![alt text](<App Images/TX Rock Climbs App.png>)
+![alt text](<App Images/TX Rock Climbs.png>)
 
 ## Installation
 

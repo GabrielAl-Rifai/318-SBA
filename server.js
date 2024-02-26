@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const users = require("./routes/users");
-const posts = require("./routes/posts");
+const climbs = require("./routes/climbs");
 
 const error = require("./utilities/error");
 
@@ -13,46 +13,9 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
-// Logging Middlewaare
-app.use((req, res, next) => {
-  const time = new Date();
-
-  console.log(
-    `-----
-${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
-  );
-  if (Object.keys(req.body).length > 0) {
-    console.log("Containing the data:");
-    console.log(`${JSON.stringify(req.body)}`);
-  }
-  next();
-});
-
-// Valid API Keys.
-apiKeys = ["perscholas", "ps-example", "hJAsknw-L198sAJD-l3kasx"];
-
-// New middleware to check for API keys!
-// Note that if the key is not verified,
-// we do not call next(); this is the end.
-// This is why we attached the /api/ prefix
-// to our routing at the beginning!
-app.use("/api", function (req, res, next) {
-  var key = req.query["api-key"];
-
-  // Check for the absence of a key.
-  if (!key) next(error(400, "API Key Required"));
-
-  // Check for key validity.
-  if (apiKeys.indexOf(key) === -1) next(error(401, "Invalid API Key"));
-
-  // Valid key! Store it in req.key for route access.
-  req.key = key;
-  next();
-});
-
 // Use our Routes
 app.use("/api/users", users);
-app.use("/api/posts", posts);
+app.use("/api/climbs", climbs);
 
 // Adding some HATEOAS links.
 app.get("/", (req, res) => {
@@ -67,7 +30,7 @@ app.get("/", (req, res) => {
   });
 });
 
-// Adding some HATEOAS links.
+// Adding HATEOAS links.
 app.get("/api", (req, res) => {
   res.json({
     links: [
@@ -82,13 +45,13 @@ app.get("/api", (req, res) => {
         type: "POST",
       },
       {
-        href: "api/posts",
-        rel: "posts",
+        href: "api/climbs",
+        rel: "climbs",
         type: "GET",
       },
       {
-        href: "api/posts",
-        rel: "posts",
+        href: "api/climbs",
+        rel: "climbs",
         type: "POST",
       },
     ],
@@ -101,13 +64,7 @@ app.use((req, res, next) => {
 });
 
 // Error-handling middleware.
-// Any call to next() that includes an
-// Error() will skip regular middleware and
-// only be processed by error-handling middleware.
-// This changes our error handling throughout the application,
-// but allows us to change the processing of ALL errors
-// at once in a single location, which is important for
-// scalability and maintainability.
+
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({ error: err.message });

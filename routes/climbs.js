@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-// Importing climb data and error utility
 const climbs = require("../data/climbs");
 const error = require("../utilities/error");
 
@@ -25,6 +24,7 @@ router
 
     res.json({ climbs, links });
   })
+
   .post((req, res, next) => {
     // Endpoint to add a new climb
     if (req.body.userId && req.body.title && req.body.content) {

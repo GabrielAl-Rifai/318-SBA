@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const ejs = require("ejs");
+// const ejs = require("ejs");
 
 const users = require("./routes/users");
 const climbs = require("./routes/climbs");
@@ -29,7 +29,6 @@ app.use("/api/rating", rating);
 
 // Route for retrieving users with optional query parameters for filtering
 app.get("/api/users", (req, res, next) => {
-  // Retrieve users from database or data source
   let filteredUsers = users;
 
   // Filter users based on query parameters
@@ -59,8 +58,7 @@ app.get("/api/climbs", (req, res, next) => {
 
 // Render climbs view
 app.get("/climbs", (req, res) => {
-  // Render the climbs view here with real data, considering query parameters if needed
-  res.render("climbs"); // Assuming you have a "climbs.ejs" file in your views folder
+  res.render("climbs", { climbs: climbs });
 });
 
 // Default route
@@ -96,7 +94,6 @@ app.get("/api", (req, res) => {
         type: "POST",
         description: "Create a new climb",
       },
-      // Add descriptions for other endpoints as needed
     ],
   });
 });

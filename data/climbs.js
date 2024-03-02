@@ -5,7 +5,7 @@ const climbs = [
     location: "Location Name",
     difficulty: "5.10",
     description: "Description of the climb",
-    userId: req.body.userId,
+    userName: boney_Maroni,
   },
   {
     id: 2,
@@ -13,6 +13,7 @@ const climbs = [
     location: "Another Location",
     difficulty: "5.8",
     description: "Description of another climb",
+    userName: Dekedral,
   },
 ];
 

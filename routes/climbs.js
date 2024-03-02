@@ -6,7 +6,8 @@ const error = require("../utilities/error");
 
 // Route for rendering the climbs view
 router.get("/", (req, res) => {
-  res.render("climbs", { climbs: climbs }); // Pass climbs data to the template
+   // Pass climbs data to the template
+  res.render("climbs", { climbs: climbs });
 });
 
 // Route for handling GET and POST requests for /climbs

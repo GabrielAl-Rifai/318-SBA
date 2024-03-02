@@ -33,6 +33,8 @@
   </head>
   <body>
     <h1>TEXAS Rock Climbs</h1>
+
+    <!-- <% %> tags in EJS refers to a "scriplet" that allows JS to be executed within the template -->
     <!-- Display climbs -->
     <% if (climbs.length > 0) { %> <% climbs.forEach(climb => { %>
     <div class="climb">
@@ -41,9 +43,10 @@
       <p><strong>Difficulty:</strong> <%= climb.difficulty %></p>
       <p><strong>Description:</strong> <%= climb.description %></p>
     </div>
+    <!-- The }); indicates the end of a JavaScript function or loop. -->
     <% }); %> <% } else { %>
     <p>No climbs available.</p>
-    <% } %> new climb form
+    <!-- <% } %> new climb form -->
     <h2>Add a New Climb</h2>
     <form action="/api/climbs" method="POST">
       <input type="text" name="name" placeholder="Climb Name" required />

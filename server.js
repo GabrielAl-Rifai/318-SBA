@@ -27,11 +27,11 @@ app.use("/api/users", users);
 app.use("/api/climbs", climbs);
 app.use("/api/rating", rating);
 
-// Route for retrieving users with optional query parameters
+// Route for retrieving users with optional query params
 app.get("/api/users", (req, res, next) => {
   let filteredUsers = users;
 
-  // Filter users based on query parameters
+  // Filter users based on query params
   if (req.query.name) {
     filteredUsers = filteredUsers.filter(
       (user) => user.name === req.query.name
@@ -41,12 +41,11 @@ app.get("/api/users", (req, res, next) => {
   res.json({ users: filteredUsers });
 });
 
-// Route for retrieving climbs with optional query parameters for filtering
+// Route for retrieving climbs with optional query params
 app.get("/api/climbs", (req, res, next) => {
-  // Retrieve climbs from database
   let filteredClimbs = climbs;
 
-  // Filter climbs based on query parameters
+  // Filter climbs based on query params
   if (req.query.location) {
     filteredClimbs = filteredClimbs.filter(
       (climb) => climb.location === req.query.location
@@ -66,7 +65,7 @@ app.get("/", (req, res) => {
   res.json({ links: [{ href: "/api", rel: "api", type: "GET" }] });
 });
 
-// API endpoint descriptions
+// API endpoints
 app.get("/api", (req, res) => {
   res.json({
     links: [

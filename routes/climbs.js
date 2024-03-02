@@ -29,11 +29,10 @@ router
   .post((req, res, next) => {
     // Endpoint to add a new climb
     if (
-      req.body.userId &&
+      req.body.name &&
       req.body.location &&
       req.body.difficulty &&
-      req.body.description &&
-      req.body.userName
+      req.body.description
     ) {
       // Creating a new climb object
       const newClimb = {
@@ -42,9 +41,8 @@ router
         location: req.body.location,
         difficulty: req.body.difficulty,
         description: req.body.description,
-        userName: req.body.userName,
+        // userName: req.body.userName,
       };
-
       // Adding the new climb to the climbs array
       climbs.push(newClimb);
       res.json(climbs[climbs.length - 1]);

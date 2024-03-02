@@ -31,7 +31,7 @@ app.use("/api/rating", rating);
 app.get("/api/users", (req, res, next) => {
   let filteredUsers = users;
 
-  // Filter users based on query params
+  // Filter users based on user name
   if (req.query.name) {
     filteredUsers = filteredUsers.filter(
       (user) => user.name === req.query.name
@@ -45,13 +45,12 @@ app.get("/api/users", (req, res, next) => {
 app.get("/api/climbs", (req, res, next) => {
   let filteredClimbs = climbs;
 
-  // Filter climbs based on query params
+  // Filter climbs based on location
   if (req.query.location) {
     filteredClimbs = filteredClimbs.filter(
       (climb) => climb.location === req.query.location
     );
   }
-
   res.json({ climbs: filteredClimbs });
 });
 

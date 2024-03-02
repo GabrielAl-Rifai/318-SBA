@@ -5,7 +5,7 @@ const climbs = [
     location: "Location Name",
     difficulty: "5.10",
     description: "Description of the climb",
-    userName: boney_Maroni,
+    userName:"boney_Maroni",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const climbs = [
     location: "Another Location",
     difficulty: "5.8",
     description: "Description of another climb",
-    userName: Dekedral,
+    userName: "Dekedral",
   },
 ];
 

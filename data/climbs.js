@@ -5,6 +5,7 @@ const climbs = [
     location: "Location Name",
     difficulty: "5.10",
     description: "Description of the climb",
+    userId: req.body.userId,
   },
   {
     id: 2,

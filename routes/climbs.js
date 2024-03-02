@@ -6,7 +6,7 @@ const error = require("../utilities/error");
 
 // Route for rendering the climbs view
 router.get("/", (req, res) => {
-   // Pass climbs data to the template
+  // Pass climbs data to the template
   res.render("climbs", { climbs: climbs });
 });
 
@@ -28,13 +28,21 @@ router
 
   .post((req, res, next) => {
     // Endpoint to add a new climb
-    if (req.body.userId && req.body.title && req.body.content) {
+    if (
+      req.body.userId &&
+      req.body.location &&
+      req.body.difficulty &&
+      req.body.description &&
+      req.body.userName
+    ) {
       // Creating a new climb object
       const newClimb = {
         id: climbs[climbs.length - 1].id + 1,
-        userId: req.body.userId,
-        title: req.body.title,
-        content: req.body.content,
+        name: req.body.name,
+        location: req.body.location,
+        difficulty: req.body.difficulty,
+        description: req.body.description,
+        userName: req.body.userName,
       };
 
       // Adding the new climb to the climbs array

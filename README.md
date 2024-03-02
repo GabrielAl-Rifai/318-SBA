@@ -21,10 +21,10 @@ This API allows users to manage rock climbing information in Texas, including ad
 ## Usage
 
 Endpoints
-GET /api/users: Retrieve information about users.
-POST /api/users: Add a new user.
 GET /api/climbs: Retrieve information about climbs.
 POST /api/climbs: Add a new climb.
+GET /api/users: Retrieve information about users.
+POST /api/users: Add a new user.
 GET /api/rating: Retrieve ratings of climbs.
 POST /api/rating: Add or update a rating for a climb.
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-// const ejs = require("ejs");
+const ejs = require("ejs");
 
 const users = require("./routes/users");
 const climbs = require("./routes/climbs");
@@ -27,7 +27,7 @@ app.use("/api/users", users);
 app.use("/api/climbs", climbs);
 app.use("/api/rating", rating);
 
-// Route for retrieving users with optional query parameters for filtering
+// Route for retrieving users with optional query parameters
 app.get("/api/users", (req, res, next) => {
   let filteredUsers = users;
 
@@ -43,7 +43,7 @@ app.get("/api/users", (req, res, next) => {
 
 // Route for retrieving climbs with optional query parameters for filtering
 app.get("/api/climbs", (req, res, next) => {
-  // Retrieve climbs from database or data source
+  // Retrieve climbs from database
   let filteredClimbs = climbs;
 
   // Filter climbs based on query parameters

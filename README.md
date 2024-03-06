@@ -7,7 +7,7 @@ This API allows users to manage rock climbing information in Texas, including ad
 ## Installation
 
 1. Clone this repository:
-   git clone https://github.com/GabrielAl-Rifai/318-SBA.git
+   git clone (https://github.com/GabrielAl-Rifai/Texas-Rock-Climbs-API.git)
 
 2. Navigate to the project directory:
    cd your-repository
